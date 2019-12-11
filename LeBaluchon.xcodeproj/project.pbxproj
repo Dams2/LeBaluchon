@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		9109E30723A15D36008251C8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9109E30623A15D36008251C8 /* AppDelegate.swift */; };
 		9109E30923A15D36008251C8 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9109E30823A15D36008251C8 /* SceneDelegate.swift */; };
-		9109E30B23A15D36008251C8 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9109E30A23A15D36008251C8 /* ViewController.swift */; };
 		9109E30E23A15D36008251C8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9109E30C23A15D36008251C8 /* Main.storyboard */; };
 		9109E31023A15D39008251C8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9109E30F23A15D39008251C8 /* Assets.xcassets */; };
 		9109E31323A15D39008251C8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9109E31123A15D39008251C8 /* LaunchScreen.storyboard */; };
@@ -30,7 +29,6 @@
 		9109E30323A15D36008251C8 /* LeBaluchon.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LeBaluchon.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9109E30623A15D36008251C8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9109E30823A15D36008251C8 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		9109E30A23A15D36008251C8 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		9109E30D23A15D36008251C8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		9109E30F23A15D39008251C8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9109E31223A15D39008251C8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -79,13 +77,9 @@
 		9109E30523A15D36008251C8 /* LeBaluchon */ = {
 			isa = PBXGroup;
 			children = (
-				9109E30623A15D36008251C8 /* AppDelegate.swift */,
-				9109E30823A15D36008251C8 /* SceneDelegate.swift */,
-				9109E30A23A15D36008251C8 /* ViewController.swift */,
-				9109E30C23A15D36008251C8 /* Main.storyboard */,
-				9109E30F23A15D39008251C8 /* Assets.xcassets */,
-				9109E31123A15D39008251C8 /* LaunchScreen.storyboard */,
-				9109E31423A15D39008251C8 /* Info.plist */,
+				9109E32A23A15DBA008251C8 /* Controller */,
+				9109E32923A15D62008251C8 /* Sources */,
+				9109E32823A15D5D008251C8 /* Ressources */,
 			);
 			path = LeBaluchon;
 			sourceTree = "<group>";
@@ -97,6 +91,33 @@
 				9109E31F23A15D39008251C8 /* Info.plist */,
 			);
 			path = LeBaluchonTests;
+			sourceTree = "<group>";
+		};
+		9109E32823A15D5D008251C8 /* Ressources */ = {
+			isa = PBXGroup;
+			children = (
+				9109E30F23A15D39008251C8 /* Assets.xcassets */,
+				9109E31123A15D39008251C8 /* LaunchScreen.storyboard */,
+				9109E31423A15D39008251C8 /* Info.plist */,
+			);
+			path = Ressources;
+			sourceTree = "<group>";
+		};
+		9109E32923A15D62008251C8 /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				9109E30623A15D36008251C8 /* AppDelegate.swift */,
+				9109E30823A15D36008251C8 /* SceneDelegate.swift */,
+				9109E30C23A15D36008251C8 /* Main.storyboard */,
+			);
+			path = Sources;
+			sourceTree = "<group>";
+		};
+		9109E32A23A15DBA008251C8 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Controller;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -200,7 +221,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9109E30B23A15D36008251C8 /* ViewController.swift in Sources */,
 				9109E30723A15D36008251C8 /* AppDelegate.swift in Sources */,
 				9109E30923A15D36008251C8 /* SceneDelegate.swift in Sources */,
 			);
@@ -363,7 +383,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = LeBaluchon/Info.plist;
+				INFOPLIST_FILE = LeBaluchon/Ressources/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -380,7 +400,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = LeBaluchon/Info.plist;
+				INFOPLIST_FILE = LeBaluchon/Ressources/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
