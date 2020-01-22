@@ -12,12 +12,22 @@ final class ExchangeViewModel {
     
     // MARK: - Outputs
     
-    var temporaryText: ((String) -> Void)?
+    var resultText: ((String) -> Void)?
+    
+    var amountText: ((String) -> Void)?
+    
+    var convertText: ((String) -> Void)?
+
     
     // MARK: - Inputs
+    
+    func viewDidLoad() {
+        resultText?("0 $")
+        amountText?("Entrez un montant en €")
+        convertText?("Convertir")
+    }
     
     func didPressConvert() {
         
     }
-    
 }

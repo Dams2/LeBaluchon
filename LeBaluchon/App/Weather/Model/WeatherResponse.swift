@@ -1,14 +1,16 @@
 //
-//  Conditions.swift
+//  WeatherResponse.swift
 //  LeBaluchon
 //
-//  Created by Damien Rojo on 11.12.19.
-//  Copyright © 2019 Damien Rojo. All rights reserved.
+//  Created by Damien Rojo on 22.01.20.
+//  Copyright © 2020 Damien Rojo. All rights reserved.
 //
 
 import Foundation
 
-struct Conditions {
+struct WeatherResponse: Codable {
+    let city: String
+    let icon: String 
     let temperatureText: String
     let maxTemperatureText: String
     let minTemperatureText: String
