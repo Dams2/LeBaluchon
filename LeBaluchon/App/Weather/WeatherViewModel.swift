@@ -35,8 +35,8 @@ final class WeatherViewModel {
         let temperatureText: String
         let maxTemperatureText: String
         let minTemperatureText: String
-        let seaLevelText: String
-        let groundLevelText: String
+        let sunrise: String
+        let sunset: String
         let pressureText: String
         let humidityText: String
     }

@@ -24,7 +24,7 @@ final class WeatherRepository: WeatherRepositoryType {
     
     func getWeather(for city: City, callback: @escaping (WeatherResponse) -> Void) {
         
-        let stringURL = "http://api.openweathermap.org/data/2.5/weather?id=\(city.rawValue)&appid=916792210f24330ed8b2f3f603669f4d"
+        let stringURL = "http://api.openweathermap.org/data/2.5/weather?id=\(city.rawValue)&appid=e238fde9b73c1a93440741f26a7b28b5"
         guard let url = URL(string: stringURL) else { return }
         client.request(type: WeatherResponse.self,
                        requestType: .GET,

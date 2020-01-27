@@ -12,6 +12,11 @@ final class ExchangeViewController: UIViewController {
     
     // MARK: - Outlets
     
+    @IBOutlet weak var resultLabel: UILabel!
+    
+    @IBOutlet weak var amountTextField: UITextField!
+    
+    @IBOutlet weak var convertButton: UIButton!
     
     // MARK: - Properties
     
@@ -19,6 +24,34 @@ final class ExchangeViewController: UIViewController {
     
     var viewModel = ExchangeViewModel()
     
+    // MARK: - View life cycle
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        bind(to: viewModel)
+        viewModel.viewDidLoad()
+    }
+    
+    // MARK: - Helpers
+    
+    private func bind(to viewModel: ExchangeViewModel) {
+        viewModel.resultText = { [weak self] text in
+            self?.resultLabel.text = text
+        }
+        
+        viewModel.amountText = { [weak self] placeholder in
+            self?.amountTextField.placeholder = placeholder
+        }
+        
+        viewModel.convertText = { [weak self] text in
+            self?.convertButton.setTitle(text, for: .normal)
+        }
+    }
+    
     // MARK: - Actions
     
+    @IBAction func didPressConvertButton(_ sender: UIButton) {
+        
+    }
 }

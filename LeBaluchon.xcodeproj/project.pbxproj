@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		910384CB23DFA334005993F6 /* ExchangeRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 910384CA23DFA334005993F6 /* ExchangeRepository.swift */; };
+		910384CD23DFA3EE005993F6 /* ExchangeResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 910384CC23DFA3EE005993F6 /* ExchangeResponse.swift */; };
+		910384D023DFA7C3005993F6 /* Currency+EchangeResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 910384CF23DFA7C3005993F6 /* Currency+EchangeResponse.swift */; };
 		9109E30723A15D36008251C8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9109E30623A15D36008251C8 /* AppDelegate.swift */; };
 		9109E30E23A15D36008251C8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9109E30C23A15D36008251C8 /* Main.storyboard */; };
 		9109E31023A15D39008251C8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9109E30F23A15D39008251C8 /* Assets.xcassets */; };
@@ -49,6 +52,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		910384CA23DFA334005993F6 /* ExchangeRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeRepository.swift; sourceTree = "<group>"; };
+		910384CC23DFA3EE005993F6 /* ExchangeResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeResponse.swift; sourceTree = "<group>"; };
+		910384CF23DFA7C3005993F6 /* Currency+EchangeResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Currency+EchangeResponse.swift"; sourceTree = "<group>"; };
 		9109E30323A15D36008251C8 /* LeBaluchon.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LeBaluchon.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9109E30623A15D36008251C8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9109E30D23A15D36008251C8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -102,6 +108,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		910384CE23DFA537005993F6 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				910384CF23DFA7C3005993F6 /* Currency+EchangeResponse.swift */,
+				910384CC23DFA3EE005993F6 /* ExchangeResponse.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		9109E2FA23A15D36008251C8 = {
 			isa = PBXGroup;
 			children = (
@@ -178,8 +193,10 @@
 		91A16C3623D8DB1400193264 /* Exchange */ = {
 			isa = PBXGroup;
 			children = (
+				910384CE23DFA537005993F6 /* Model */,
 				91A16C3923D8DB4900193264 /* ExchangeViewController.swift */,
 				91D3C59723A16F82007719C5 /* ExchangeViewModel.swift */,
+				910384CA23DFA334005993F6 /* ExchangeRepository.swift */,
 			);
 			path = Exchange;
 			sourceTree = "<group>";
@@ -370,10 +387,13 @@
 				9115CEAE23DF1B00007C4820 /* WeatherDataSource.swift in Sources */,
 				9115CEB023DF283D007C4820 /* Cities.swift in Sources */,
 				91A16C3E23D8DBA100193264 /* WeatherViewController.swift in Sources */,
+				910384CB23DFA334005993F6 /* ExchangeRepository.swift in Sources */,
 				91D3C59C23A17245007719C5 /* WeatherViewModel.swift in Sources */,
 				91D3C59A23A1722E007719C5 /* TranslationViewModel.swift in Sources */,
 				91A16C4C23D8DC9100193264 /* WeatherCoordinator.swift in Sources */,
 				91A16C4823D8DC7000193264 /* ExchangeCoordinator.swift in Sources */,
+				910384D023DFA7C3005993F6 /* Currency+EchangeResponse.swift in Sources */,
+				910384CD23DFA3EE005993F6 /* ExchangeResponse.swift in Sources */,
 				91A16C5A23D8EE1A00193264 /* WeatherResponse.swift in Sources */,
 				9115CEB223DF2E14007C4820 /* Context.swift in Sources */,
 				91A16C3A23D8DB4900193264 /* ExchangeViewController.swift in Sources */,

@@ -15,10 +15,19 @@ final class ExchangeViewModel {
     var resultText: ((String) -> Void)?
     
     var amountText: ((String) -> Void)?
-    
-    var convertText: ((String) -> Void)?
 
+    var convertText: ((String) -> Void)?
     
+    var currency: (([Exchange]) -> Void)?
+    
+    struct Exchange {
+        let usd: String
+    }
+    
+    enum WeatherItems {
+        case usd(rates: ExchangeResponse)
+    }
+
     // MARK: - Inputs
     
     func viewDidLoad() {

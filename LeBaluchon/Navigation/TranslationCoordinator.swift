@@ -26,6 +26,7 @@ final class TranslationCoordinator {
      // MARK: - Coodinator
 
     func start() {
+        showTranslation()
     }
 
     private func showTranslation() {

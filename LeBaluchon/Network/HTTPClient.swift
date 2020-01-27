@@ -23,7 +23,7 @@ final class HTTPClient {
         self.engine = engine
         self.jsonDecoder = JSONDecoder()
     }
-    
+
     func request<T>(type: T.Type,
                     requestType: RequestType,
                     url: URL,

@@ -12,12 +12,12 @@ extension WeatherViewModel.VisibleItem {
     init(response: WeatherResponse) {
         self.city = response.name
         self.icon = response.weather.first?.icon ?? "01d"
-        self.temperatureText = "\(response.main.temp)"
-        self.maxTemperatureText = "\(response.main.tempMax)"
-        self.minTemperatureText = "\(response.main.tempMin)"
-        self.seaLevelText = ""
-        self.groundLevelText = ""
-        self.pressureText = ""
-        self.humidityText = ""
+        self.temperatureText = "\(Int(response.main.temp - 273))°C"
+        self.maxTemperatureText = "Température max: \(Int(response.main.tempMax - 273.15))°C"
+        self.minTemperatureText = "Température min: \(Int(response.main.tempMin - 273.15))°C"
+        self.sunrise = "Lever: \(NSDate(timeIntervalSince1970: TimeInterval(response.sys.sunrise)))"
+        self.sunset = "Coucher: \(response.sys.sunset)"
+        self.pressureText = "Pression: \(response.main.pressure / 1000) bar"
+        self.humidityText = "Humidité: \(response.main.humidity)%"
     }
 }
