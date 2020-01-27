@@ -9,7 +9,14 @@
 import UIKit
 
 public class Screens {
+
+    let context: Context
+
     let storyboard = UIStoryboard(name: "Main", bundle: Bundle(for: Screens.self))
+
+    init(context: Context) {
+        self.context = context
+    }
 }
 
 extension Screens {
@@ -36,7 +43,7 @@ extension Screens {
 
     func createWeatherViewController() -> UIViewController {
         let viewController = storyboard.instantiateViewController(withIdentifier: "WeatherViewController") as! WeatherViewController
-        let repository = WeatherRepository()
+        let repository = WeatherRepository(client: context.client)
         let viewModel = WeatherViewModel(repository: repository)
         viewController.viewModel = viewModel
         return viewController

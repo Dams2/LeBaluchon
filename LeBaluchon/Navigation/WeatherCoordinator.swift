@@ -26,6 +26,7 @@ final class WeatherCoordinator {
      // MARK: - Coodinator
 
     func start() {
+        showWeather()
     }
 
     private func showWeather() {

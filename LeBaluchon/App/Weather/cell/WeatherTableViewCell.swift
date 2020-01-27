@@ -9,6 +9,8 @@
 import UIKit
 
 final class WeatherTableViewCell: UITableViewCell {
+
+    
     
     func configure(with weather: WeatherViewModel.VisibleItem) {
         

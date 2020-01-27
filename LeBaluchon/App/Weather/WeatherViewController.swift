@@ -18,7 +18,7 @@ final class WeatherViewController: UIViewController {
     
     weak var coordinator: WeatherCoordinator?
 
-    var viewModel = WeatherViewModel!
+    var viewModel: WeatherViewModel!
     
     // MARK: - Private Properties()
 
@@ -41,9 +41,11 @@ final class WeatherViewController: UIViewController {
     
     private func bind(to viewModel: WeatherViewModel) {
         
-        viewModel.Items = { [weak self] items in
-            self?.dataSource.update(with: items)
-            self?.tableView.reloadData()
+        viewModel.items = { [weak self] items in
+            DispatchQueue.main.async {
+                self?.dataSource.update(with: items)
+                self?.tableView.reloadData()
+            }
         }
     }
     

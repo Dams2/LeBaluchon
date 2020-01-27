@@ -12,7 +12,7 @@ final class WeatherViewModel {
     
     // MARK: - Private Properties
     
-    private let repository = WeatherRepositoryType
+    private let repository: WeatherRepositoryType
     
     init(repository: WeatherRepositoryType) {
         self.repository = repository
@@ -20,9 +20,8 @@ final class WeatherViewModel {
     
     var weatherItems: [WeatherItems] = [] {
         didSet {
-            let items = weatherItems.map { VisibleItem{weatherItems: $0 }
-                self.items?(items)
-            }
+            let items = weatherItems.map { VisibleItem(weatherItems: $0) }
+            self.items?(items)
         }
     }
     
@@ -49,9 +48,9 @@ final class WeatherViewModel {
     // MARK: - Inputs
     
     func viewDidLoad() {
-        repository.getWeather(for: "New York") { (response) in
+        repository.getWeather(for: .newYork) { (response) in
             self.weatherItems.append(.city(conditions: response))
-            self.repository.getWeather(for: "Geneva") { (response) in
+            self.repository.getWeather(for: .geneva) { (response) in
                 self.weatherItems.append(.city(conditions: response))
             }
         }

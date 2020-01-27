@@ -10,28 +10,35 @@ import UIKit
 
 final class Coordinator {
     
-    private unowned var sceneDelegate: SceneDelegate
-
+    private unowned var appDelegate: AppDelegate
+    
     private var mainCoordinator: MainCoordinator?
-
+    
+    private let context: Context
+    
     // MARK: - Initializer
-
-   init(sceneDelegate: SceneDelegate) {
-       self.sceneDelegate = sceneDelegate
-   }
-
-   // MARK: - Coordinator
-
+    
+    init(appDelegate: AppDelegate, context: Context) {
+        self.appDelegate = appDelegate
+        self.context = context
+    }
+    
+    // MARK: - Coordinator
+    
     func start() {
+        appDelegate.window = UIWindow(frame: UIScreen.main.bounds)
+        appDelegate.window!.rootViewController = UIViewController()
+        appDelegate.window!.makeKeyAndVisible()
+        
         if ProcessInfo.processInfo.environment["IS_RUNNING_UNIT_TESTS"] == "YES" {
             return
         }
-
-       showMain()
-   }
-
+        
+        showMain()
+    }
+    
     private func showMain() {
-        mainCoordinator = MainCoordinator(presenter: sceneDelegate.window!)
+        mainCoordinator = MainCoordinator(presenter: appDelegate.window!, context: context)
         mainCoordinator?.start()
     }
 }

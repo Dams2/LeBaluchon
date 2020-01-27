@@ -10,14 +10,14 @@ import Foundation
 
 extension WeatherViewModel.VisibleItem {
     init(response: WeatherResponse) {
-        self.city = response.city
-        self.icon = response.icon
-        self.temperatureText = "\(response.temperatureText)"
-        self.maxTemperatureText = "\(response.maxTemperatureText)"
-        self.minTemperatureText = "\(response.minTemperatureText)"
-        self.seaLevelText = "\(response.seaLevelText)"
-        self.groundLevelText = "\(response.groundLevelText)"
-        self.pressureText = "\(response.pressureText)"
-        self.humidityText = "\(response.humidityText)"
+        self.city = response.name
+        self.icon = response.weather.first?.icon ?? "01d"
+        self.temperatureText = "\(response.main.temp)"
+        self.maxTemperatureText = "\(response.main.tempMax)"
+        self.minTemperatureText = "\(response.main.tempMin)"
+        self.seaLevelText = ""
+        self.groundLevelText = ""
+        self.pressureText = ""
+        self.humidityText = ""
     }
 }

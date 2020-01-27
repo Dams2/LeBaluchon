@@ -15,7 +15,8 @@ final class WeatherDataSources: NSObject, UITableViewDelegate, UITableViewDataSo
     private var items: [Item] = []
 
     func update(with items: [Item]) {
-        
+        self.items = items
+        print(items)
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -23,7 +24,13 @@ final class WeatherDataSources: NSObject, UITableViewDelegate, UITableViewDataSo
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard items.count > indexPath.item else {
+            return UITableViewCell()
+        }
+
+        let visibleItem = items[indexPath.item]
         let cell = tableView.dequeueReusableCell(withIdentifier: "WeatherTableViewCell", for: indexPath) as! WeatherTableViewCell
+        cell.configure(with: visibleItem)
         return cell
     }
 }
