@@ -28,9 +28,9 @@ final class WeatherViewModel {
     
     // MARK: - Outputs
     
-    var Items: (([VisibleItem]) -> Void)?
+    var items: (([VisibleItem]) -> Void)?
     
-    struct VisibleItem: Codable {
+    struct VisibleItem: Equatable {
         let city: String
         let icon: String
         let temperatureText: String
@@ -50,9 +50,9 @@ final class WeatherViewModel {
     
     func viewDidLoad() {
         repository.getWeather(for: "New York") { (response) in
-            self.weatherItems.append(weatherItems.city(conditions: response))
-            self.repository.getWeather(for: "Geneva") { (respond) in
-                self.weatherItems.append(weatherItems.city(conditions: response))
+            self.weatherItems.append(.city(conditions: response))
+            self.repository.getWeather(for: "Geneva") { (response) in
+                self.weatherItems.append(.city(conditions: response))
             }
         }
     }
@@ -68,19 +68,5 @@ extension WeatherViewModel.VisibleItem {
         case .city(conditions: let response):
             self = WeatherViewModel.VisibleItem(response: response)
         }
-    }
-}
-
-extension WeatherViewModel.VisibleItem {
-    init(response: WeatherViewModel.WeatherItems) {
-        self.city = response.city
-        self.icon = response.icon
-        self.temperatureText = "\(response.temperatureText)"
-        self.maxTemperatureText = "\(response.maxTemperatureText)"
-        self.minTemperatureText = "\(response.minTemperatureText)"
-        self.seaLevelText = "\(response.seaLevelText)"
-        self.groundLevelText = "\(response.groundLevelText)"
-        self.pressureText = "\(response.pressureText)"
-        self.humidityText = "\(response.humidityText)"
     }
 }

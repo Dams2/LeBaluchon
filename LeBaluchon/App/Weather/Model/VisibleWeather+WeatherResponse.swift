@@ -8,7 +8,7 @@
 
 import Foundation
 
-extension VisibleWeather {
+extension WeatherViewModel.VisibleItem {
     init(response: WeatherResponse) {
         self.city = response.city
         self.icon = response.icon

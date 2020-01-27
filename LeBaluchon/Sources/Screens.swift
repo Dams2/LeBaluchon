@@ -36,7 +36,8 @@ extension Screens {
 
     func createWeatherViewController() -> UIViewController {
         let viewController = storyboard.instantiateViewController(withIdentifier: "WeatherViewController") as! WeatherViewController
-        let viewModel = WeatherViewModel()
+        let repository = WeatherRepository()
+        let viewModel = WeatherViewModel(repository: repository)
         viewController.viewModel = viewModel
         return viewController
     }

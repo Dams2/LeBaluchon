@@ -12,15 +12,39 @@ final class WeatherViewController: UIViewController {
     
     // MARK: - Outlets
     
+    @IBOutlet weak var tableView: UITableView!
     
-    
-    // MARK: - Properties
+    // MARK: - Public Properties
     
     weak var coordinator: WeatherCoordinator?
 
-    var viewModel = WeatherViewModel()
+    var viewModel = WeatherViewModel!
+    
+    // MARK: - Private Properties()
 
+    private lazy var dataSource = WeatherDataSources()
+    
+    // MARK: - View life cycle
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        tableView.dataSource = dataSource
+        tableView.delegate = dataSource
+        
+        bind(to: viewModel)
+        
+        viewModel.viewDidLoad()
+    }
+    
     // MARK: - Actions
     
+    private func bind(to viewModel: WeatherViewModel) {
+        
+        viewModel.Items = { [weak self] items in
+            self?.dataSource.update(with: items)
+            self?.tableView.reloadData()
+        }
+    }
     
 }

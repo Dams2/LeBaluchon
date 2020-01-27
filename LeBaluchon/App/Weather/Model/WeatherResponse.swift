@@ -11,11 +11,11 @@ import Foundation
 struct WeatherResponse: Codable {
     let city: String
     let icon: String 
-    let temperatureText: String
-    let maxTemperatureText: String
-    let minTemperatureText: String
-    let seaLevelText: String
-    let groundLevelText: String
-    let pressureText: String
-    let humidityText: String
+    let temperatureText: Double
+    let maxTemperatureText: Double
+    let minTemperatureText: Double
+    let seaLevelText: Double
+    let groundLevelText: Double
+    let pressureText: Double
+    let humidityText: Double
 }
