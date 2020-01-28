@@ -14,6 +14,8 @@ final class ExchangeViewModel {
     
     private let repository: ExchangeRepositoryType
     
+    private var ratesResult: [String: Double] = [:]
+    
     init(repository: ExchangeRepositoryType) {
         self.repository = repository
     }
@@ -38,9 +40,21 @@ final class ExchangeViewModel {
         convertText?("Convertir")
     }
     
-    func didPressConvert() {
+    func didPressConvert(amountText: String) {
         repository.getExchange(for: "USD") { (ExchangeResponse) in
-            self.resultText?(String(ExchangeResponse.timestamp))
+            self.ratesResult = ExchangeResponse.rates
+            guard  let ratesResult = self.ratesResult["USD"] else { return }
+            
+            self.convertion(amountText: amountText, ratesResult: ratesResult)
         }
+    }
+    
+    private func convertion(amountText: String, ratesResult: Double) {
+        let result: Double
+        guard let amountText = Double(amountText) else { return }
+    
+        result = amountText * ratesResult
+        
+        self.resultText?(String(result))
     }
 }

@@ -57,6 +57,7 @@ final class ExchangeViewController: UIViewController {
     // MARK: - Actions
     
     @IBAction func didPressConvertButton(_ sender: UIButton) {
-        viewModel.didPressConvert()
+        guard let amountText = amountTextField.text else { return }
+        viewModel.didPressConvert(amountText: amountText)
     }
 }
