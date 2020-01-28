@@ -70,7 +70,7 @@ final class MainCoordinator: NSObject, UITabBarControllerDelegate {
 
         tabBarController = UITabBarController(nibName: nil, bundle: nil)
         tabBarController.viewControllers = tabBarSource.items
-        tabBarController.selectedViewController = tabBarSource[.weather]
+        tabBarController.selectedViewController = tabBarSource[.exchange]
 
         super.init()
 
@@ -81,7 +81,7 @@ final class MainCoordinator: NSObject, UITabBarControllerDelegate {
 
     func start() {
         presenter.rootViewController = tabBarController
-        showWeather()
+        showExchange()
     }
 
     private func showExchange() {

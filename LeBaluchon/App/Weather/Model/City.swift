@@ -1,5 +1,5 @@
 //
-//  Cities.swift
+//  City.swift
 //  LeBaluchon
 //
 //  Created by Damien Rojo on 27.01.20.

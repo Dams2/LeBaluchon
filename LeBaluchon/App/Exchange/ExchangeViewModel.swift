@@ -10,6 +10,14 @@ import Foundation
 
 final class ExchangeViewModel {
     
+    // MARK: - Private Properties
+    
+    private let repository: ExchangeRepositoryType
+    
+    init(repository: ExchangeRepositoryType) {
+        self.repository = repository
+    }
+
     // MARK: - Outputs
     
     var resultText: ((String) -> Void)?
@@ -17,15 +25,9 @@ final class ExchangeViewModel {
     var amountText: ((String) -> Void)?
 
     var convertText: ((String) -> Void)?
-    
-    var currency: (([Exchange]) -> Void)?
-    
+
     struct Exchange {
-        let usd: String
-    }
-    
-    enum WeatherItems {
-        case usd(rates: ExchangeResponse)
+        let currency: String
     }
 
     // MARK: - Inputs
@@ -37,6 +39,8 @@ final class ExchangeViewModel {
     }
     
     func didPressConvert() {
-        
+        repository.getExchange(for: "USD") { (ExchangeResponse) in
+            self.resultText?(String(ExchangeResponse.timestamp))
+        }
     }
 }

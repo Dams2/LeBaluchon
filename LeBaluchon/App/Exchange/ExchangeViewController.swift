@@ -19,10 +19,10 @@ final class ExchangeViewController: UIViewController {
     @IBOutlet weak var convertButton: UIButton!
     
     // MARK: - Properties
-    
+
     weak var coordinator: ExchangeCoordinator?
     
-    var viewModel = ExchangeViewModel()
+    var viewModel: ExchangeViewModel!
     
     // MARK: - View life cycle
     
@@ -31,15 +31,20 @@ final class ExchangeViewController: UIViewController {
         
         bind(to: viewModel)
         viewModel.viewDidLoad()
+        
     }
     
     // MARK: - Helpers
     
     private func bind(to viewModel: ExchangeViewModel) {
-        viewModel.resultText = { [weak self] text in
-            self?.resultLabel.text = text
-        }
         
+            viewModel.resultText = { [weak self] text in
+                DispatchQueue.main.async {
+                    self?.resultLabel.text = text
+                }
+            }
+        
+
         viewModel.amountText = { [weak self] placeholder in
             self?.amountTextField.placeholder = placeholder
         }
@@ -52,6 +57,6 @@ final class ExchangeViewController: UIViewController {
     // MARK: - Actions
     
     @IBAction func didPressConvertButton(_ sender: UIButton) {
-        
+        viewModel.didPressConvert()
     }
 }

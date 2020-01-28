@@ -23,7 +23,8 @@ final class ExchangeRepository: ExchangeRepositoryType {
     }
     
     func getExchange(for currency: String, callback: @escaping (ExchangeResponse) -> Void) {
-        let stringURL = "http://data.fixer.io/api/latest?access_key=e87b7aaf13a4b6950601ce3cde2612d0"
+        
+        let stringURL = "http://data.fixer.io/api/latest?access_key=e87b7aaf13a4b6950601ce3cde2612d0&symbols=\(currency)&format=1"
         guard let url = URL(string: stringURL) else { return }
         client.request(type: ExchangeResponse.self,
                        requestType: .GET,

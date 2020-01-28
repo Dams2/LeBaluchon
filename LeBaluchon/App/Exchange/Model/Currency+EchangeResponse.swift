@@ -8,9 +8,8 @@
 
 import Foundation
 
-extension ExchangeViewModel.Currency {
+extension ExchangeViewModel.Exchange {
     init(response: ExchangeResponse) {
-        self.usd = "\(response.rates)"
-        
+        self.currency = "\(response.rates)"
     }
 }
