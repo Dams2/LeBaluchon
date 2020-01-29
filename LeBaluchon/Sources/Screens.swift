@@ -19,19 +19,21 @@ public class Screens {
     }
 }
 
-extension Screens {
+protocol ExchangeViewControllerDelegate: class {
+    func didPresentAlert(for alert: AlertType)
+}
 
-    func createExchangeViewController() -> UIViewController {
+extension Screens {
+    func createExchangeViewController(delegate: ExchangeViewControllerDelegate) -> UIViewController {
         let viewController = storyboard.instantiateViewController(withIdentifier: "ExchangeViewController") as! ExchangeViewController
         let repository = ExchangeRepository(client: context.client)
-        let viewModel = ExchangeViewModel(repository: repository)
+        let viewModel = ExchangeViewModel(repository: repository, delegate: delegate)
         viewController.viewModel = viewModel
         return viewController
     }
 }
 
 extension Screens {
-
     func createTranslationViewController() -> UIViewController {
         let viewController = storyboard.instantiateViewController(withIdentifier: "TranslationViewController") as! TranslationViewController
         let viewModel = TranslationViewModel()
@@ -41,12 +43,31 @@ extension Screens {
 }
 
 extension Screens {
-
     func createWeatherViewController() -> UIViewController {
         let viewController = storyboard.instantiateViewController(withIdentifier: "WeatherViewController") as! WeatherViewController
         let repository = WeatherRepository(client: context.client)
         let viewModel = WeatherViewModel(repository: repository)
         viewController.viewModel = viewModel
         return viewController
+    }
+}
+
+extension Screens {
+    func createMapViewController() -> UIViewController {
+        let viewController = storyboard.instantiateViewController(withIdentifier: "MapViewController") as! MapViewController
+        return viewController
+    }
+}
+
+extension Screens {
+    func createAlert(with configuration: AlertConfiguration) -> UIAlertController {
+        let alertController = UIAlertController()
+        alertController.title = configuration.title
+        alertController.message = configuration.message
+        let action = UIAlertAction(title: configuration.okMessage,
+                                   style: .default,
+                                   handler: nil)
+        alertController.addAction(action)
+        return alertController
     }
 }

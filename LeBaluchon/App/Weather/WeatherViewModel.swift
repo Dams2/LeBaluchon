@@ -55,10 +55,6 @@ final class WeatherViewModel {
             }
         }
     }
-    
-    func didPressCity() {
-        
-    }
 }
 
 extension WeatherViewModel.VisibleItem {

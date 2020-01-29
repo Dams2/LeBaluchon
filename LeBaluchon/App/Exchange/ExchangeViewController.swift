@@ -28,10 +28,10 @@ final class ExchangeViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.hideKeyboardWhenTappedAround()
         
         bind(to: viewModel)
         viewModel.viewDidLoad()
-        
     }
     
     // MARK: - Helpers

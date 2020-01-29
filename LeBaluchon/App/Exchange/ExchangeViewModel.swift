@@ -13,11 +13,14 @@ final class ExchangeViewModel {
     // MARK: - Private Properties
     
     private let repository: ExchangeRepositoryType
+
+    private weak var delegate: ExchangeViewControllerDelegate?
+
+    private let usd = "USD"
     
-    private var ratesResult: [String: Double] = [:]
-    
-    init(repository: ExchangeRepositoryType) {
+    init(repository: ExchangeRepositoryType, delegate: ExchangeViewControllerDelegate) {
         self.repository = repository
+        self.delegate = delegate
     }
 
     // MARK: - Outputs
@@ -37,24 +40,30 @@ final class ExchangeViewModel {
     func viewDidLoad() {
         resultText?("0 $")
         amountText?("Entrez un montant en €")
-        convertText?("Convertir")
+        convertText?("CONVERTIR")
     }
     
     func didPressConvert(amountText: String) {
-        repository.getExchange(for: "USD") { (ExchangeResponse) in
-            self.ratesResult = ExchangeResponse.rates
-            guard  let ratesResult = self.ratesResult["USD"] else { return }
-            
-            self.convertion(amountText: amountText, ratesResult: ratesResult)
+        guard !amountText.isEmpty else {
+            // Gerer l'akerte le texte est vide
+            return
+        }
+        guard let _ = Double(amountText) else {
+            delegate?.didPresentAlert(for: .badNumber(alertConfiguration: AlertConfiguration(title: "Attention",
+                                                                                             message: "Merci de mettre un nombre",
+                                                                                             okMessage: "Ok",
+                                                                                             cancelMessage: nil)))
+            return
+        }
+        
+        repository.getExchange(for: usd) { (response) in
+            guard let ratesResult = response.rates[self.usd] else { return }
+            self.convert(amountText, with: ratesResult)
         }
     }
     
-    private func convertion(amountText: String, ratesResult: Double) {
-        let result: Double
+    private func convert(_ amountText: String, with ratesResult: Double) {
         guard let amountText = Double(amountText) else { return }
-    
-        result = amountText * ratesResult
-        
-        self.resultText?(String(result))
+        self.resultText?("\(round(amountText * ratesResult * 100) / 100) $")
     }
 }

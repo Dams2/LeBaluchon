@@ -12,6 +12,7 @@ enum ViewControllerItem: Int {
     case exchange = 0
     case translation
     case weather
+    case map
 }
 
 protocol TabBarSourceType {
@@ -33,6 +34,7 @@ fileprivate class TabBarSource: TabBarSourceType {
     var items: [UINavigationController] = [
         UINavigationController(nibName: nil, bundle: nil),
         UINavigationController(nibName: nil, bundle: nil),
+        UINavigationController(nibName: nil, bundle: nil),
         UINavigationController(nibName: nil, bundle: nil)
     ]
 
@@ -40,6 +42,7 @@ fileprivate class TabBarSource: TabBarSourceType {
         self[.exchange].tabBarItem = UITabBarItem(tabBarSystemItem: .bookmarks, tag: 0)
         self[.translation].tabBarItem = UITabBarItem(tabBarSystemItem: .favorites, tag: 1)
         self[.weather].tabBarItem = UITabBarItem(tabBarSystemItem: .contacts, tag: 2)
+        self[.map].tabBarItem = UITabBarItem(tabBarSystemItem: .more, tag: 3)
     }
 }
 
@@ -58,6 +61,8 @@ final class MainCoordinator: NSObject, UITabBarControllerDelegate {
     private var translationCoordinator: TranslationCoordinator?
     
     private var weatherCoordinator: WeatherCoordinator?
+    
+    private var mapCoordinator: MapCoordinator?
 
     private var tabBarSource: TabBarSourceType = TabBarSource()
 
@@ -93,9 +98,15 @@ final class MainCoordinator: NSObject, UITabBarControllerDelegate {
         translationCoordinator = TranslationCoordinator(presenter: tabBarSource[.translation], screens: screens)
         translationCoordinator?.start()
     }
+    
     private func showWeather() {
         weatherCoordinator = WeatherCoordinator(presenter: tabBarSource[.weather], screens: screens)
         weatherCoordinator?.start()
+    }
+    
+    private func showMap() {
+        mapCoordinator = MapCoordinator(presenter: tabBarSource[.map], screens: screens)
+        mapCoordinator?.start()
     }
 }
 
@@ -113,6 +124,8 @@ extension MainCoordinator {
             showTranslation()
         case .weather:
             showWeather()
+        case .map:
+            showMap()
         }
     }
 }
