@@ -45,14 +45,11 @@ final class ExchangeViewModel {
     
     func didPressConvert(amountText: String) {
         guard !amountText.isEmpty else {
-            // Gerer l'akerte le texte est vide
+            presentAlert(title: "Attention", message: "Vous n'avez saisis aucun montant", okMessage: "Ok", cancelMessage: nil)
             return
         }
         guard let _ = Double(amountText) else {
-            delegate?.didPresentAlert(for: .badNumber(alertConfiguration: AlertConfiguration(title: "Attention",
-                                                                                             message: "Merci de mettre un nombre",
-                                                                                             okMessage: "Ok",
-                                                                                             cancelMessage: nil)))
+            presentAlert(title: "Attention", message: "Merci d'entrer un nombre", okMessage: "Ok", cancelMessage: nil)
             return
         }
         
@@ -65,5 +62,12 @@ final class ExchangeViewModel {
     private func convert(_ amountText: String, with ratesResult: Double) {
         guard let amountText = Double(amountText) else { return }
         self.resultText?("\(round(amountText * ratesResult * 100) / 100) $")
+    }
+    
+    private func presentAlert(title: String, message: String, okMessage: String, cancelMessage: String?) {
+        delegate?.didPresentAlert(for: .badEntry(alertConfiguration: AlertConfiguration(title: title,
+                                                                                        message: message,
+                                                                                        okMessage: okMessage,
+                                                                                        cancelMessage: cancelMessage)))
     }
 }

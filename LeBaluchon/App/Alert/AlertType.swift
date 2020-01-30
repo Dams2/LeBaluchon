@@ -9,5 +9,5 @@
 import Foundation
 
 enum AlertType {
-    case badNumber(alertConfiguration: AlertConfiguration)
+    case badEntry(alertConfiguration: AlertConfiguration)
 }

@@ -7,65 +7,33 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "FFDF1F6B-48A5-43B8-8A3F-2885880FB621"
-            shouldBeEnabled = "No"
+            uuid = "56FDCACC-ACAD-49D8-B6BA-AB2509E7214B"
+            shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "LeBaluchon/Navigation/ExchangeCoordinator.swift"
+            filePath = "LeBaluchon/App/Exchange/ExchangeViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "45"
-            endingLineNumber = "45"
-            landmarkName = "didPresentAlert(for:)"
+            startingLineNumber = "47"
+            endingLineNumber = "47"
+            landmarkName = "didPressConvert(amountText:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "A1D97EA0-2243-4A07-98AE-8BF0852A183F"
-            shouldBeEnabled = "No"
+            uuid = "16BC354D-A56B-4229-A96C-384CA4B5CB84"
+            shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "LeBaluchon/Navigation/ExchangeCoordinator.swift"
+            filePath = "LeBaluchon/App/Exchange/ExchangeViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "43"
-            endingLineNumber = "43"
-            landmarkName = "didPresentAlert(for:)"
+            startingLineNumber = "51"
+            endingLineNumber = "51"
+            landmarkName = "didPressConvert(amountText:)"
             landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "A1D97EA0-2243-4A07-98AE-8BF0852A183F - c14126b494211d82"
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "LeBaluchon.ExchangeCoordinator.didPresentAlert(for: LeBaluchon.AlertType) -&gt; ()"
-                  moduleName = "LeBaluchon"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/damienrojo/Developer/Swift/Xcode%2011/LeBaluchon/LeBaluchon/Navigation/ExchangeCoordinator.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "44"
-                  endingLineNumber = "44"
-                  offsetFromSymbolStart = "124">
-               </Location>
-               <Location
-                  uuid = "A1D97EA0-2243-4A07-98AE-8BF0852A183F - c14126b494211d82"
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "LeBaluchon.ExchangeCoordinator.didPresentAlert(for: LeBaluchon.AlertType) -&gt; ()"
-                  moduleName = "LeBaluchon"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/damienrojo/Developer/Swift/Xcode%2011/LeBaluchon/LeBaluchon/Navigation/ExchangeCoordinator.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "44"
-                  endingLineNumber = "44"
-                  offsetFromSymbolStart = "184">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

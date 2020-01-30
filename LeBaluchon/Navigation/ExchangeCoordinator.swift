@@ -41,17 +41,10 @@ final class ExchangeCoordinator {
 extension ExchangeCoordinator: ExchangeViewControllerDelegate {
     func didPresentAlert(for alert: AlertType) {
         switch alert {
-        case .badNumber(alertConfiguration: let configuration):
+        case .badEntry(alertConfiguration: let configuration):
             let alertController = screens.createAlert(with: configuration)
             exchangeViewController?.present(alertController,
                                             animated: true)
         }
     }
-}
-
-struct AlertConfiguration {
-    let title: String
-    let message: String
-    let okMessage: String
-    let cancelMessage: String?
 }
