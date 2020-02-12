@@ -30,6 +30,7 @@ final class TranslationViewModel {
         originPlaceholderText?("Saisissez du text")
         destinationText?("Anglais")
         destinationPlaceholderText?("Traduction")
+        translateText?("TRADUIRE")
     }
     
     func didPressTranslation() {

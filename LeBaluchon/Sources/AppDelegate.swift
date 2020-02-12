@@ -12,11 +12,11 @@ import UIKit
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
+    var coordinator: Coordinator!
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
         let context = Context()
-        let coordinator = Coordinator(appDelegate: self,
+        coordinator = Coordinator(appDelegate: self,
                                       context: context)
         coordinator.start()
         return true

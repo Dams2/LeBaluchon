@@ -10,9 +10,9 @@ import UIKit
 
 enum ViewControllerItem: Int {
     case exchange = 0
-    case translation
-    case weather
-    case map
+    case translation = 1
+    case weather = 2
+    case map = 3
 }
 
 protocol TabBarSourceType {
@@ -46,7 +46,7 @@ fileprivate class TabBarSource: TabBarSourceType {
     }
 }
 
-final class MainCoordinator: NSObject, UITabBarControllerDelegate {
+final class MainCoordinator: NSObject {
 
     // MARK: - Properties
     
@@ -64,7 +64,7 @@ final class MainCoordinator: NSObject, UITabBarControllerDelegate {
     
     private var mapCoordinator: MapCoordinator?
 
-    private var tabBarSource: TabBarSourceType = TabBarSource()
+    private var tabBarSource = TabBarSource()
 
     // MARK: - Init
 
@@ -110,7 +110,7 @@ final class MainCoordinator: NSObject, UITabBarControllerDelegate {
     }
 }
 
-extension MainCoordinator {
+extension MainCoordinator: UITabBarControllerDelegate {
     func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController) {
         let index = tabBarController.selectedIndex
         guard index < tabBarSource.items.count, let item = ViewControllerItem(rawValue: index) else {

@@ -15,6 +15,8 @@ final class MapViewController: UIViewController {
     
     weak var coordinator: MapCoordinator?
     
+    private let locationManager: CLLocationManager = CLLocationManager()
+    
     // MARK: - Outlets
     
     @IBOutlet weak var mapView: MKMapView!
@@ -23,6 +25,7 @@ final class MapViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
     }
     
     // MARK: - Actions

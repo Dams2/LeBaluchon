@@ -15,6 +15,8 @@ final class ExchangeViewModel {
     private let repository: ExchangeRepositoryType
 
     private weak var delegate: ExchangeViewControllerDelegate?
+    
+    private let helper = Helper()
 
     private let usd = "USD"
     
@@ -45,29 +47,19 @@ final class ExchangeViewModel {
     
     func didPressConvert(amountText: String) {
         guard !amountText.isEmpty else {
-            presentAlert(title: "Attention", message: "Vous n'avez saisis aucun montant", okMessage: "Ok", cancelMessage: nil)
+            helper.presentAlert(title: "Attention", message: "Vous n'avez saisis aucun montant", okMessage: "Ok", cancelMessage: nil)
             return
         }
         guard let _ = Double(amountText) else {
-            presentAlert(title: "Attention", message: "Merci d'entrer un nombre", okMessage: "Ok", cancelMessage: nil)
+            helper.presentAlert(title: "Attention", message: "Merci d'entrer un nombre", okMessage: "Ok", cancelMessage: nil)
             return
         }
         
         repository.getExchange(for: usd) { (response) in
             guard let ratesResult = response.rates[self.usd] else { return }
-            self.convert(amountText, with: ratesResult)
+            if let resultText = self.helper.convert(amountText, with: ratesResult) {
+                self.resultText?(resultText)
+            }
         }
-    }
-    
-    private func convert(_ amountText: String, with ratesResult: Double) {
-        guard let amountText = Double(amountText) else { return }
-        self.resultText?("\(round(amountText * ratesResult * 100) / 100) $")
-    }
-    
-    private func presentAlert(title: String, message: String, okMessage: String, cancelMessage: String?) {
-        delegate?.didPresentAlert(for: .badEntry(alertConfiguration: AlertConfiguration(title: title,
-                                                                                        message: message,
-                                                                                        okMessage: okMessage,
-                                                                                        cancelMessage: cancelMessage)))
     }
 }
