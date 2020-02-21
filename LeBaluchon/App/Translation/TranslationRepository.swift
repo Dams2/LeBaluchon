@@ -9,15 +9,37 @@
 import Foundation
 import SwiftGoogleTranslate
 
-class A {
-    let u = SwiftGoogleTranslate()
+protocol TranslationRepositoryType {
+    func getTranslation(originText: String, callback: @escaping (String) -> Void)
+}
+protocol SwiftGoogleTranslateType {
+    func start(with apiKey: String)
+    func translate(_ q: String,
+                   _ target: String,
+                   _ source: String,
+                   _ format: String,
+                   _ model: String,
+                   _ completion: @escaping ((String?, Error?) -> Void))
+}
+
+extension SwiftGoogleTranslate: SwiftGoogleTranslateType {}
+
+final class TranslationRepository: TranslationRepositoryType{
     
-    func toto() {
-        u.start(with: "APIKEY")
-        
+    let swiftGoogleTranslate: SwiftGoogleTranslateType
+     
+    init(swiftGoogleTranslate: SwiftGoogleTranslateType = SwiftGoogleTranslate.shared) {
+        self.swiftGoogleTranslate = swiftGoogleTranslate
+        self.swiftGoogleTranslate.start(with: "61ed32bee4a4592eb79ab4e80bf71f7974d3e5cb")
     }
 
-    func getMachin() {
-        u.translate(<#T##q: String##String#>, <#T##target: String##String#>, <#T##source: String##String#>, <#T##format: String##String#>, <#T##model: String##String#>, <#T##completion: ((String?, Error?) -> Void)##((String?, Error?) -> Void)##(String?, Error?) -> Void#>)
+    func getTranslation(originText: String, callback: @escaping (String) -> Void) {
+        swiftGoogleTranslate.translate(originText, "fr", "en", "", "") { (text, error) in
+            guard let text = text else { return }
+            print(text)
+            callback(text)
+        }
     }
 }
+
+

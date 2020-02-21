@@ -37,7 +37,7 @@ final class TranslationViewController: UIViewController {
     
     weak var coordinator: TranslationCoordinator?
 
-    var viewModel = TranslationViewModel()
+    var viewModel: TranslationViewModel!
     
     // MARK: - View life cycle
     
@@ -90,5 +90,7 @@ final class TranslationViewController: UIViewController {
     // MARK: - Actions
     
     @IBAction func didPressTranslateButton(_ sender: UIButton) {
+        guard let text = originTextView.text else { return }
+        viewModel.didPressTranslation(text: text)
     }
 }

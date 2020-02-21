@@ -15,3 +15,5 @@ struct ExchangeResponse: Codable {
     let base, date: String
     let rates: [String: Double]
 }
+
+extension ExchangeResponse: Equatable {}

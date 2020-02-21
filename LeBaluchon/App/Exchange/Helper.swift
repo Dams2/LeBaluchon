@@ -15,7 +15,7 @@ final class Helper {
 
     func convert(_ amountText: String, with ratesResult: Double) -> String? {
         guard let amountText = Double(amountText) else { return nil }
-        let resultText = "\(round(amountText * ratesResult * 100) / 100) $"
+        let resultText = "\(String(format: "%.2f", amountText * ratesResult)) $"
         return resultText
     }
     

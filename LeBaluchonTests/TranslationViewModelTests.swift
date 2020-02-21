@@ -9,70 +9,40 @@
 import XCTest
 @testable import LeBaluchon
 
-final class TranslationViewModelTests: XCTestCase {
+final class TranslationRepositotyTests: XCTestCase {
     
-    func testGivenTranslationViewModel_WhenViewDidLoad_ThenOriginText_IsCorrectlyReturned() {
-        let viewModel = TranslationViewModel()
-        let expectation = self.expectation(description: "Origin text returned")
-
-        viewModel.originText = { text in
-            XCTAssertEqual(text, "Français")
+    func testGivenTranslationRepository_WhenGetTranslation_IsCorrectlyReturned() {
+        let translator = MockSwiftGoogleTranslateType()
+        translator.translatedText = "hello"
+        let translationRepository = TranslationRepository(swiftGoogleTranslate: translator)
+        let expectation = self.expectation(description: "Return Text")
+        
+        translationRepository.getTranslation(originText: "salut", callback: { text in
+            
+            XCTAssertEqual(text, "hello")
             expectation.fulfill()
-        }
-
-        viewModel.viewDidLoad()
+        })
+        
         waitForExpectations(timeout: 1.0, handler: nil)
     }
+}
+
+final class MockSwiftGoogleTranslateType: SwiftGoogleTranslateType {
+
+    var translatedText: String = ""
     
-    func testGivenTranslationViewModel_WhenViewDidLoad_ThenOriginPlaceholderText_IsCorrectlyReturned() {
-        let viewModel = TranslationViewModel()
-        let expectation = self.expectation(description: "Origin placeholder text returned")
-
-        viewModel.originPlaceholderText = { text in
-            XCTAssertEqual(text, "Saisissez du text")
-            expectation.fulfill()
-        }
-
-        viewModel.viewDidLoad()
-        waitForExpectations(timeout: 1.0, handler: nil)
+    func start(with apiKey: String) {
+        
     }
     
-    func testGivenTranslationViewModel_WhenViewDidLoad_ThenDestinationText_IsCorrectlyReturned() {
-        let viewModel = TranslationViewModel()
-        let expectation = self.expectation(description: "Destination text returned")
-
-        viewModel.destinationText = { text in
-            XCTAssertEqual(text, "Anglais")
-            expectation.fulfill()
-        }
-
-        viewModel.viewDidLoad()
-        waitForExpectations(timeout: 1.0, handler: nil)
+    func translate(_ q: String,
+                   _ target: String,
+                   _ source: String,
+                   _ format: String,
+                   _ model: String,
+                   _ completion: @escaping ((String?, Error?) -> Void)) {
+        completion(self.translatedText, nil)
     }
     
-    func testGivenTranslationViewModel_WhenViewDidLoad_ThenDestinationPlaceholderText_IsCorrectlyReturned() {
-        let viewModel = TranslationViewModel()
-        let expectation = self.expectation(description: "Destination placeholder text returned")
-
-        viewModel.destinationPlaceholderText = { text in
-            XCTAssertEqual(text, "Traduction")
-            expectation.fulfill()
-        }
-
-        viewModel.viewDidLoad()
-        waitForExpectations(timeout: 1.0, handler: nil)
-    }
     
-    func testGivenTranslationViewModel_WhenViewDidLoad_ThenTranslateText_IsCorrectlyReturned() {
-        let viewModel = TranslationViewModel()
-        let expectation = self.expectation(description: "Translate text returned")
-
-        viewModel.translateText = { text in
-            XCTAssertEqual(text, "TRADUIRE")
-            expectation.fulfill()
-        }
-
-        viewModel.viewDidLoad()
-        waitForExpectations(timeout: 1.0, handler: nil)
-    }
 }

@@ -56,34 +56,74 @@ final class ExchangeViewModelTests: XCTestCase {
         waitForExpectations(timeout: 1.0, handler: nil)
     }
     
-//    func testGivenExchangeViewModel_WhenDidPressConvert_ThenRepository_IsCorrectlyReturned() {
-//        let repository = MockExchangeRepository()
-//        let delegate = MockExchangeViewControllerDelegate()
-//        let viewModel = ExchangeViewModel(repository: repository, delegate: delegate)
-//        let expectation = self.expectation(description: "Repository returned")
-//
-//        viewModel.didPressConvert(amountText: "10")
-//
-//        viewModel.viewDidLoad()
-//        viewModel.didPressConvert(amountText: "10")
-//        waitForExpectations(timeout: 1.0, handler: nil)
-//    }
-    
     func testGivenExchangeViewModel_WhenDidPressConvert_ThenAmountTextIsEmpty_IsCorrectlyReturned() {
         let repository = MockExchangeRepository()
+        let expectedResult = ExchangeResponse(success: true, timestamp: 1519296206, base: "EUR", date: "2020-02-17", rates: ["USD": 1.23396])
+        repository.response = expectedResult
         let delegate = MockExchangeViewControllerDelegate()
         let viewModel = ExchangeViewModel(repository: repository, delegate: delegate)
-        let helper = Helper()
-        
-        
-        let expectation = self.expectation(description: "Repository returned")
-        
-        helper.presentAlert(title: "Attention", message: "Vous n'avez saisis aucun montant", okMessage: "Ok", cancelMessage: nil)
-        
-        expectation.fulfill()
-        
+        let expectation = self.expectation(description: "Response returned")
+
+        var counter = 0
+
+        viewModel.resultText = { result in
+            if counter == 1 {
+                XCTAssertEqual(result, "16.04 $")
+                expectation.fulfill()
+            }
+            counter += 1
+        }
+
         viewModel.viewDidLoad()
         viewModel.didPressConvert(amountText: "")
+        waitForExpectations(timeout: 1.0, handler: nil)
+    }
+    
+    func testGivenExchangeViewModel_WhenDidPressConvert_ThenAmountTextIsNotANumber_IsCorrectlyReturned() {
+        let repository = MockExchangeRepository()
+        let expectedResult = ExchangeResponse(success: true, timestamp: 1519296206, base: "EUR", date: "2020-02-17", rates: ["USD": 1.23396])
+        repository.response = expectedResult
+        let delegate = MockExchangeViewControllerDelegate()
+        let viewModel = ExchangeViewModel(repository: repository, delegate: delegate)
+        let expectation = self.expectation(description: "Response returned")
+        
+        var counter = 0
+
+        viewModel.resultText = { result in
+            if counter == 1 {
+                XCTAssertEqual(result, "16.04 $")
+                expectation.fulfill()
+            }
+            counter += 1
+        }
+
+        viewModel.viewDidLoad()
+        viewModel.didPressConvert(amountText: "n")
+        waitForExpectations(timeout: 1.0, handler: nil)
+    }
+
+    
+    func testGivenExchangeViewModel_WhenDidPressConvert_ThenResultText_IsCorrectlyReturned() {
+        let repository = MockExchangeRepository()
+        let expectedResult = ExchangeResponse(success: true, timestamp: 1519296206, base: "EUR", date: "2020-02-17", rates: ["USD": 1.23396])
+        repository.response = expectedResult
+        let delegate = MockExchangeViewControllerDelegate()
+        let viewModel = ExchangeViewModel(repository: repository, delegate: delegate)
+        let expectation = self.expectation(description: "Response returned")
+        
+        var counter = 0
+        
+        viewModel.resultText = { result in
+            if counter == 1 {
+                XCTAssertEqual(result, "16.04 $")
+                expectation.fulfill()
+            }
+            counter += 1
+        }
+        
+        viewModel.viewDidLoad()
+        
+        viewModel.didPressConvert(amountText: "13")
         waitForExpectations(timeout: 1.0, handler: nil)
     }
 }
@@ -93,6 +133,7 @@ fileprivate final class MockExchangeRepository: ExchangeRepositoryType {
     var response: ExchangeResponse!
 
     func getExchange(for currency: String, callback: @escaping (ExchangeResponse) -> Void) {
+        guard let response = response else { return }
         callback(response)
     }
 }

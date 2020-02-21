@@ -10,6 +10,14 @@ import Foundation
 
 final class TranslationViewModel {
     
+    // MARK: - Private Properties
+    
+    private let repository: TranslationRepositoryType
+    
+    init(repository: TranslationRepositoryType) {
+        self.repository = repository
+    }
+
     // MARK: - Outputs
     
     var originText: ((String) -> Void)?
@@ -22,7 +30,6 @@ final class TranslationViewModel {
     
     var translateText: ((String) -> Void)?
 
-    
     // MARK: - Inputs
     
     func viewDidLoad() {
@@ -33,7 +40,7 @@ final class TranslationViewModel {
         translateText?("TRADUIRE")
     }
     
-    func didPressTranslation() {
-        
+    func didPressTranslation(text: String) {
+//        repository.getTranslation(originText: text, callback: )
     }
 }

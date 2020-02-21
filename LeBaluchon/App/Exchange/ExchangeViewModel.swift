@@ -32,6 +32,8 @@ final class ExchangeViewModel {
     var amountText: ((String) -> Void)?
 
     var convertText: ((String) -> Void)?
+    
+    var alertDisplay: ((AlertType) -> Void)?
 
     struct Exchange {
         let currency: String
@@ -47,7 +49,7 @@ final class ExchangeViewModel {
     
     func didPressConvert(amountText: String) {
         guard !amountText.isEmpty else {
-            helper.presentAlert(title: "Attention", message: "Vous n'avez saisis aucun montant", okMessage: "Ok", cancelMessage: nil)
+            presentAlert(title: "Attention", message: "Merci d'entrer une valeur", okMessage: "Ok", cancelMessage: nil)
             return
         }
         guard let _ = Double(amountText) else {
@@ -62,4 +64,12 @@ final class ExchangeViewModel {
             }
         }
     }
+    
+    func presentAlert(title: String, message: String, okMessage: String, cancelMessage: String?) {
+        delegate?.didPresentAlert(for: .badEntry(alertConfiguration: AlertConfiguration(title: title,
+                                                                                        message: message,
+                                                                                        okMessage: okMessage,
+                                                                                        cancelMessage: cancelMessage)))
+    }
+
 }

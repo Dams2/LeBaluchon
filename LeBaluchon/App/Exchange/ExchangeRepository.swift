@@ -12,13 +12,23 @@ protocol ExchangeRepositoryType: class {
     func getExchange(for currency: String, callback: @escaping (ExchangeResponse) -> Void)
 }
 
+protocol HTTPClientType: class {
+    func request<T>(type: T.Type,
+                    requestType: RequestType,
+                    url: URL,
+                    cancelledBy token: RequestCancellationToken,
+                    completion: @escaping (T) -> Void) where T : Decodable, T : Encodable
+}
+
+extension HTTPClient: HTTPClientType {}
+
 final class ExchangeRepository: ExchangeRepositoryType {
     
-    let client: HTTPClient
+    let client: HTTPClientType
 
     private let token = RequestCancellationToken()
 
-    init(client: HTTPClient) {
+    init(client: HTTPClientType) {
         self.client = client
     }
     
