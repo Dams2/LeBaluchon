@@ -14,11 +14,11 @@ protocol WeatherRepositoryType: class {
 
 final class WeatherRepository: WeatherRepositoryType {
 
-    let client: HTTPClient
+    let client: HTTPClientType
 
     private let token = RequestCancellationToken()
 
-    init(client: HTTPClient) {
+    init(client: HTTPClientType) {
         self.client = client
     }
     

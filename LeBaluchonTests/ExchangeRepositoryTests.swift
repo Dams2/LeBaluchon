@@ -18,7 +18,7 @@ final class ExchangeRepositoryTests: XCTestCase {
                                         date: "js",
                                         rates: ["String" : 12.34])
         
-        let mockClient = MockHTTPClientType()
+        let mockClient = MockExchangeHTTPClientType()
         mockClient.result = expectedResponse
 
         let repository = ExchangeRepository(client: mockClient)
@@ -33,7 +33,7 @@ final class ExchangeRepositoryTests: XCTestCase {
     }
 }
 
-final class MockHTTPClientType: HTTPClientType {
+final class MockExchangeHTTPClientType: HTTPClientType {
 
     var result: ExchangeResponse!
     

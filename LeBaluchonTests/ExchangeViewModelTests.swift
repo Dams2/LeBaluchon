@@ -138,7 +138,7 @@ fileprivate final class MockExchangeRepository: ExchangeRepositoryType {
     }
 }
 
-fileprivate final class MockExchangeViewControllerDelegate: ExchangeViewControllerDelegate {
+fileprivate final class MockExchangeViewControllerDelegate: viewControllerDelegate {
     
     func didPresentAlert(for alert: AlertType) {
         

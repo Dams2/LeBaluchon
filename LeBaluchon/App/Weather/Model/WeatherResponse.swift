@@ -8,6 +8,12 @@
 
 import Foundation
 
+extension WeatherResponse: Equatable {
+    static func == (lhs: WeatherResponse, rhs: WeatherResponse) -> Bool {
+        return lhs.coord == rhs.coord && lhs.weather == rhs.weather && lhs.base == rhs.base && lhs.main == rhs.main && lhs.visibility == rhs.visibility && lhs.wind == rhs.wind && lhs.clouds == rhs.clouds && lhs.dt == rhs.dt && lhs.sys == rhs.sys && lhs.timezone == rhs.timezone && lhs.id == rhs.id && lhs.name == rhs.name && lhs.cod == rhs.cod
+    }
+}
+
 // MARK: - WeatherResponse
 struct WeatherResponse: Codable {
     let coord: Coord

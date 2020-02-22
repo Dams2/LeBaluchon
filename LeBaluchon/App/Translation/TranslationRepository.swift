@@ -9,10 +9,10 @@
 import Foundation
 import SwiftGoogleTranslate
 
-protocol TranslationRepositoryType {
+protocol TranslationRepositoryType: class {
     func getTranslation(originText: String, callback: @escaping (String) -> Void)
 }
-protocol SwiftGoogleTranslateType {
+protocol SwiftGoogleTranslateType: class {
     func start(with apiKey: String)
     func translate(_ q: String,
                    _ target: String,
