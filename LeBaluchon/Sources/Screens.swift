@@ -24,7 +24,7 @@ protocol ExchangeViewControllerDelegate: class {
 }
 
 extension Screens {
-    func createExchangeViewController(delegate: ExchangeViewControllerDelegate) -> UIViewController {
+    func createExchangeViewController(delegate: ExchangeViewControllerDelegate?) -> UIViewController {
         let viewController = storyboard.instantiateViewController(withIdentifier: "ExchangeViewController") as! ExchangeViewController
         let repository = ExchangeRepository(client: context.client)
         let viewModel = ExchangeViewModel(repository: repository, delegate: delegate)
@@ -38,10 +38,10 @@ protocol TranslationViewControllerDelegate: class {
 }
 
 extension Screens {
-    func createTranslationViewController() -> UIViewController {
+    func createTranslationViewController(delegate: TranslationViewControllerDelegate) -> UIViewController {
         let viewController = storyboard.instantiateViewController(withIdentifier: "TranslationViewController") as! TranslationViewController
         let repository = TranslationRepository()
-        let viewModel = TranslationViewModel(repository: repository)
+        let viewModel = TranslationViewModel(repository: repository, delegate: delegate)
         viewController.viewModel = viewModel
         return viewController
     }

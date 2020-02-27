@@ -16,16 +16,17 @@ final class ExchangeRepositoryTests: XCTestCase {
                                         timestamp: 12,
                                         base: "jds",
                                         date: "js",
-                                        rates: ["String" : 12.34])
+                                        rates: ["USD" : 12.34])
         
         let mockClient = MockExchangeHTTPClientType()
         mockClient.result = expectedResponse
 
         let repository = ExchangeRepository(client: mockClient)
+        
         let expectation = self.expectation(description: "Response Return")
         
-        repository.getExchange(for: "USD", callback: { response in
-            XCTAssertEqual(response, expectedResponse)
+        repository.getExchange(for: "USD", callback: { result in
+            XCTAssertEqual(result, 12.34)
             expectation.fulfill()
         })
         

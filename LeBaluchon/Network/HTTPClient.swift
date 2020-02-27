@@ -31,8 +31,7 @@ final class HTTPClient {
                     completion: @escaping (T) -> Void) where T: Codable {
         var request = URLRequest(url: url)
         request.httpMethod = requestType.rawValue
-        
-        // TOTO Gérer les erreurs.
+
         engine.send(request: request, cancelledBy: token, callback: { data, _, _ in
             guard let data = data else { return }
             self.decodeJSON(type: T.self, data: data, completion: completion)

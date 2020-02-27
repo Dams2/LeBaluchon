@@ -9,7 +9,7 @@
 import Foundation
 
 protocol ExchangeRepositoryType: class {
-    func getExchange(for currency: String, callback: @escaping (ExchangeResponse) -> Void)
+    func getExchange(for currency: String, callback: @escaping (Double) -> Void)
 }
 
 protocol HTTPClientType: class {
@@ -25,14 +25,14 @@ extension HTTPClient: HTTPClientType {}
 final class ExchangeRepository: ExchangeRepositoryType {
     
     let client: HTTPClientType
-
+    
     private let token = RequestCancellationToken()
-
+    
     init(client: HTTPClientType) {
         self.client = client
     }
     
-    func getExchange(for currency: String, callback: @escaping (ExchangeResponse) -> Void) {
+    func getExchange(for currency: String, callback: @escaping (Double) -> Void) {
         
         let stringURL = "http://data.fixer.io/api/latest?access_key=e87b7aaf13a4b6950601ce3cde2612d0&symbols=\(currency)&format=1"
         guard let url = URL(string: stringURL) else { return }
@@ -41,8 +41,8 @@ final class ExchangeRepository: ExchangeRepositoryType {
                        url: url,
                        cancelledBy: token,
                        completion: { exchangeResponse in
-                        callback(exchangeResponse)
+                        guard let ratesResult = exchangeResponse.rates[currency] else { return }
+                        callback(ratesResult)
         })
-
     }
 }

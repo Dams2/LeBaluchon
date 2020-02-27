@@ -14,8 +14,11 @@ final class TranslationViewModel {
     
     private let repository: TranslationRepositoryType
     
-    init(repository: TranslationRepositoryType) {
+    private let delegate: TranslationViewControllerDelegate?
+    
+    init(repository: TranslationRepositoryType, delegate: TranslationViewControllerDelegate) {
         self.repository = repository
+        self.delegate = delegate
     }
 
     // MARK: - Outputs
@@ -41,6 +44,9 @@ final class TranslationViewModel {
     }
     
     func didPressTranslation(text: String) {
-//        repository.getTranslation(originText: text, callback: )
+        repository.getTranslation(originText: text) { (response) in
+            
+            guard let result = response else { return }
+        }
     }
 }

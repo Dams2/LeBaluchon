@@ -14,9 +14,7 @@ final class MapViewController: UIViewController {
     // MARK: - Properties
     
     weak var coordinator: MapCoordinator?
-    
-    private let locationManager: CLLocationManager = CLLocationManager()
-    
+     
     // MARK: - Outlets
     
     @IBOutlet weak var mapView: MKMapView!

@@ -8,6 +8,6 @@
 
 import Foundation
 
-enum AlertType {
+enum AlertType: Equatable {
     case badEntry(alertConfiguration: AlertConfiguration)
 }

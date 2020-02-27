@@ -8,6 +8,8 @@
 
 import Foundation
 
+extension WeatherViewModel.WeatherItems: Equatable {}
+
 final class WeatherViewModel {
     
     // MARK: - Private Properties
@@ -18,7 +20,7 @@ final class WeatherViewModel {
         self.repository = repository
     }
     
-    var weatherItems: [WeatherItems] = [] {
+    private var weatherItems: [WeatherItems] = [] {
         didSet {
             let items = weatherItems.map { VisibleItem(weatherItems: $0) }
             self.items?(items)

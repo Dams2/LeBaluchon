@@ -20,7 +20,8 @@ final class ExchangeViewModel {
 
     private let usd = "USD"
     
-    init(repository: ExchangeRepositoryType, delegate: ExchangeViewControllerDelegate) {
+    init(repository: ExchangeRepositoryType,
+         delegate: ExchangeViewControllerDelegate?) {
         self.repository = repository
         self.delegate = delegate
     }
@@ -53,19 +54,18 @@ final class ExchangeViewModel {
             return
         }
         guard let _ = Double(amountText) else {
-            helper.presentAlert(title: "Attention", message: "Merci d'entrer un nombre", okMessage: "Ok", cancelMessage: nil)
+            presentAlert(title: "Attention", message: "Merci d'entrer un nombre", okMessage: "Ok", cancelMessage: nil)
             return
         }
         
-        repository.getExchange(for: usd) { (response) in
-            guard let ratesResult = response.rates[self.usd] else { return }
-            if let resultText = self.helper.convert(amountText, with: ratesResult) {
+        repository.getExchange(for: usd) { rate in
+            if let resultText = self.helper.convert(amountText, with: rate) {
                 self.resultText?(resultText)
             }
         }
     }
     
-    func presentAlert(title: String, message: String, okMessage: String, cancelMessage: String?) {
+    private func presentAlert(title: String, message: String, okMessage: String, cancelMessage: String?) {
         delegate?.didPresentAlert(for: .badEntry(alertConfiguration: AlertConfiguration(title: title,
                                                                                         message: message,
                                                                                         okMessage: okMessage,

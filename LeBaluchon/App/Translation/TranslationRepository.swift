@@ -10,7 +10,7 @@ import Foundation
 import SwiftGoogleTranslate
 
 protocol TranslationRepositoryType: class {
-    func getTranslation(originText: String, callback: @escaping (String) -> Void)
+    func getTranslation(originText: String, callback: @escaping (String?) -> Void)
 }
 protocol SwiftGoogleTranslateType: class {
     func start(with apiKey: String)
@@ -30,16 +30,21 @@ final class TranslationRepository: TranslationRepositoryType{
      
     init(swiftGoogleTranslate: SwiftGoogleTranslateType = SwiftGoogleTranslate.shared) {
         self.swiftGoogleTranslate = swiftGoogleTranslate
-        self.swiftGoogleTranslate.start(with: "61ed32bee4a4592eb79ab4e80bf71f7974d3e5cb")
+        swiftGoogleTranslate.start(with: "AIzaSyC5G9jKEyehau2iR0MfAe1WD6_a3cqNHEI")
     }
 
-    func getTranslation(originText: String, callback: @escaping (String) -> Void) {
-        swiftGoogleTranslate.translate(originText, "fr", "en", "", "") { (text, error) in
-            guard let text = text else { return }
-            print(text)
-            callback(text)
+    func getTranslation(originText: String, callback: @escaping (String?) -> Void) {
+//        swiftGoogleTranslate.translate(originText, "en", "fr") { (text, error) in
+//            guard let text = text else { return }
+//            print(text)
+//            callback(text)
+//        }
+        swiftGoogleTranslate.translate(originText,
+                                       "en",
+                                       "fr",
+                                       "text",
+                                       "base") { text, error in
+                                        print(text)
         }
     }
 }
-
-

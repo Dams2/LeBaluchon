@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct AlertConfiguration {
+struct AlertConfiguration: Equatable {
     let title: String
     let message: String
     let okMessage: String
