@@ -33,21 +33,7 @@ final class TranslationCoordinator {
     }
 
     private func showTranslation() {
-        translationViewController = screens.createTranslationViewController(delegate: self)
-        guard let translationViewController = translationViewController else { return }
-        presenter.viewControllers = [translationViewController]
+        let viewController = screens.createTranslationViewController()
+        presenter.viewControllers = [viewController]
      }
 }
-
-
-extension TranslationCoordinator: TranslationViewControllerDelegate {
-    func didPresentAlert(for alert: AlertType) {
-        switch alert {
-        case .badEntry(alertConfiguration: let configuration):
-            let alertController = screens.createAlert(with: configuration)
-            translationViewController?.present(alertController,
-                                            animated: true)
-        }
-    }
-}
-

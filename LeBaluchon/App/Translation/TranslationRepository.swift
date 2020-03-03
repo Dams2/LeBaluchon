@@ -34,17 +34,12 @@ final class TranslationRepository: TranslationRepositoryType{
     }
 
     func getTranslation(originText: String, callback: @escaping (String?) -> Void) {
-//        swiftGoogleTranslate.translate(originText, "en", "fr") { (text, error) in
-//            guard let text = text else { return }
-//            print(text)
-//            callback(text)
-//        }
         swiftGoogleTranslate.translate(originText,
                                        "en",
                                        "fr",
                                        "text",
                                        "base") { text, error in
-                                        print(text)
+                                        callback(text)
         }
     }
 }

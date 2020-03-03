@@ -12,9 +12,8 @@ import XCTest
 final class TranslationRepositoryTests: XCTestCase {
     
     func testGivenTranslationRepository_WhenGetTranslation_IsCorrectlyReturned() {
-        let translator = MockSwiftGoogleTranslateType()
-        translator.translatedText = "hello"
-        let translationRepository = TranslationRepository(swiftGoogleTranslate: translator)
+        let swiftGoogleTranslate = MockSwiftGoogleTranslateType()
+        let translationRepository = TranslationRepository(swiftGoogleTranslate: swiftGoogleTranslate)
         let expectation = self.expectation(description: "Return Text")
         
         translationRepository.getTranslation(originText: "salut", callback: { text in
@@ -29,7 +28,7 @@ final class TranslationRepositoryTests: XCTestCase {
 
 final class MockSwiftGoogleTranslateType: SwiftGoogleTranslateType {
 
-    var translatedText: String = ""
+    var translatedText: String = "hello"
     
     func start(with apiKey: String) {
         

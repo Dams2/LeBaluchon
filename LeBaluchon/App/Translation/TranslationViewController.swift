@@ -90,7 +90,7 @@ final class TranslationViewController: UIViewController {
     // MARK: - Actions
     
     @IBAction func didPressTranslateButton(_ sender: UIButton) {
-        guard let text = originTextView.text else { return }
-        viewModel.didPressTranslation(text: text)
+        guard let originText = originTextView.text else { return }
+        viewModel.didPressTranslation(originText: originText)
     }
 }

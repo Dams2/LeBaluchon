@@ -39,10 +39,10 @@ fileprivate class TabBarSource: TabBarSourceType {
     ]
 
     init() {
-        self[.exchange].tabBarItem = UITabBarItem(tabBarSystemItem: .bookmarks, tag: 0)
-        self[.translation].tabBarItem = UITabBarItem(tabBarSystemItem: .favorites, tag: 1)
-        self[.weather].tabBarItem = UITabBarItem(tabBarSystemItem: .contacts, tag: 2)
-        self[.map].tabBarItem = UITabBarItem(tabBarSystemItem: .more, tag: 3)
+        self[.exchange].tabBarItem = UITabBarItem(title: "Change", image: UIImage(named: "dollardSign"), tag: 0)
+        self[.translation].tabBarItem = UITabBarItem(title: "Traduction", image: UIImage(named: "text"), tag: 1)
+        self[.weather].tabBarItem = UITabBarItem(title: "Météo", image: UIImage(named: "brightness"), tag: 2)
+        self[.map].tabBarItem = UITabBarItem(title: "Map", image: UIImage(named: "earth"), tag: 3)
     }
 }
 

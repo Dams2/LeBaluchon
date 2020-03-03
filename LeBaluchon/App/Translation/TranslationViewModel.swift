@@ -13,12 +13,9 @@ final class TranslationViewModel {
     // MARK: - Private Properties
     
     private let repository: TranslationRepositoryType
-    
-    private let delegate: TranslationViewControllerDelegate?
-    
-    init(repository: TranslationRepositoryType, delegate: TranslationViewControllerDelegate) {
+
+    init(repository: TranslationRepositoryType) {
         self.repository = repository
-        self.delegate = delegate
     }
 
     // MARK: - Outputs
@@ -36,17 +33,22 @@ final class TranslationViewModel {
     // MARK: - Inputs
     
     func viewDidLoad() {
-        originText?("Français")
-        originPlaceholderText?("Saisissez du text")
-        destinationText?("Anglais")
-        destinationPlaceholderText?("Traduction")
-        translateText?("TRADUIRE")
+        DispatchQueue.main.async {
+            self.originText?("Français")
+            self.originPlaceholderText?("Saisissez du text")
+            self.destinationText?("Anglais")
+            self.destinationPlaceholderText?("Traduction")
+            self.translateText?("TRADUIRE")
+        }
     }
     
-    func didPressTranslation(text: String) {
-        repository.getTranslation(originText: text) { (response) in
-            
+    func didPressTranslation(originText: String) {
+        repository.getTranslation(originText: originText) { (response) in
             guard let result = response else { return }
+            DispatchQueue.main.async {
+                self.destinationPlaceholderText?(result)
+            }
+            print(result)
         }
     }
 }

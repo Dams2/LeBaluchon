@@ -22,7 +22,7 @@ final class WeatherCoordinator {
          self.presenter = presenter
          self.screens = screens
      }
-     
+
      // MARK: - Coodinator
 
     func start() {

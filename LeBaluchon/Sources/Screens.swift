@@ -33,22 +33,14 @@ extension Screens {
     }
 }
 
-protocol TranslationViewControllerDelegate: class {
-    func didPresentAlert(for alert: AlertType)
-}
-
 extension Screens {
-    func createTranslationViewController(delegate: TranslationViewControllerDelegate) -> UIViewController {
+    func createTranslationViewController() -> UIViewController {
         let viewController = storyboard.instantiateViewController(withIdentifier: "TranslationViewController") as! TranslationViewController
         let repository = TranslationRepository()
-        let viewModel = TranslationViewModel(repository: repository, delegate: delegate)
+        let viewModel = TranslationViewModel(repository: repository)
         viewController.viewModel = viewModel
         return viewController
     }
-}
-
-protocol WeatherViewControllerDelegate: class {
-    func didPresentAlert(for alert: AlertType)
 }
 
 extension Screens {

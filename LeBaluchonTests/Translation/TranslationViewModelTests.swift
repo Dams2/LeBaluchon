@@ -13,8 +13,7 @@ final class TranslationViewModelTests: XCTestCase {
     
     func testGivenTranslationViewModel_WhenViewModel_ThenOriginText_IsCorrectlyReturned() {
         let repository = MockTranslationRepositoryType()
-        let delegate = MockTranslationViewControllerDelegate()
-        let viewModel = TranslationViewModel(repository: repository, delegate: delegate)
+        let viewModel = TranslationViewModel(repository: repository)
         let expectation = self.expectation(description: "Origin text returned")
         
         viewModel.originText = { text in
@@ -28,8 +27,7 @@ final class TranslationViewModelTests: XCTestCase {
     
     func testGivenTranslationViewModel_WhenViewModel_ThenOriginPlaceholderText_IsCorrectlyReturned() {
         let repository = MockTranslationRepositoryType()
-        let delegate = MockTranslationViewControllerDelegate()
-        let viewModel = TranslationViewModel(repository: repository, delegate: delegate)
+        let viewModel = TranslationViewModel(repository: repository)
         let expectation = self.expectation(description: "Origin placeholder text returned")
         
         viewModel.originPlaceholderText = { text in
@@ -43,8 +41,7 @@ final class TranslationViewModelTests: XCTestCase {
     
     func testGivenTranslationViewModel_WhenViewModel_ThenDestinationText_IsCorrectlyReturned() {
         let repository = MockTranslationRepositoryType()
-        let delegate = MockTranslationViewControllerDelegate()
-        let viewModel = TranslationViewModel(repository: repository, delegate: delegate)
+        let viewModel = TranslationViewModel(repository: repository)
         let expectation = self.expectation(description: "Destination text returned")
         
         viewModel.destinationText = { text in
@@ -58,8 +55,7 @@ final class TranslationViewModelTests: XCTestCase {
     
     func testGivenTranslationViewModel_WhenViewModel_ThenDestinationPlaceholderText_IsCorrectlyReturned() {
         let repository = MockTranslationRepositoryType()
-        let delegate = MockTranslationViewControllerDelegate()
-        let viewModel = TranslationViewModel(repository: repository, delegate: delegate)
+        let viewModel = TranslationViewModel(repository: repository)
         let expectation = self.expectation(description: "Destination placeholder text returned")
         
         viewModel.destinationPlaceholderText = { text in
@@ -73,8 +69,7 @@ final class TranslationViewModelTests: XCTestCase {
     
     func testGivenTranslationViewModel_WhenViewModel_ThenTranslateText_IsCorrectlyReturned() {
         let repository = MockTranslationRepositoryType()
-        let delegate = MockTranslationViewControllerDelegate()
-        let viewModel = TranslationViewModel(repository: repository, delegate: delegate)
+        let viewModel = TranslationViewModel(repository: repository)
         let expectation = self.expectation(description: "Translate text returned")
         
         viewModel.translateText = { text in
@@ -85,19 +80,33 @@ final class TranslationViewModelTests: XCTestCase {
         viewModel.viewDidLoad()
         waitForExpectations(timeout: 1.0, handler: nil)
     }
-}
-
-
-
-final class MockTranslationRepositoryType: TranslationRepositoryType {
     
-    func getTranslation(originText: String, callback: @escaping (String?) -> Void) {
-
+    func testGivenTranslationViewModel_WhenDidPressTranslation_ThenDestinationPlaceHolderTextIsCorrectlyReturned() {
+        let repository = MockTranslationRepositoryType()
+        repository.result = "hello"
+        let viewModel = TranslationViewModel(repository: repository)
+        let expectation = self.expectation(description: "Destination placeholder text returned")
+        var counter = 0
+        viewModel.destinationPlaceholderText = { result in
+            if counter == 1 {
+                XCTAssertEqual(result, "hello")
+                expectation.fulfill()
+            }
+            counter += 1
+        }
+        
+        viewModel.viewDidLoad()
+        
+        viewModel.didPressTranslation(originText: "bonjour")
+        waitForExpectations(timeout: 1.0, handler: nil)
     }
 }
 
-final class MockTranslationViewControllerDelegate: TranslationViewControllerDelegate {
-    func didPresentAlert(for alert: AlertType) {
-        
+final class MockTranslationRepositoryType: TranslationRepositoryType {
+    
+    var result: String!
+    
+    func getTranslation(originText: String, callback: @escaping (String?) -> Void) {
+        callback(result)
     }
 }
