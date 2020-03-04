@@ -15,8 +15,8 @@ extension WeatherViewModel.VisibleItem {
         self.temperatureText = "\(Int(response.main.temp - 273))°C"
         self.maxTemperatureText = "Température max: \(Int(response.main.tempMax - 273.15))°C"
         self.minTemperatureText = "Température min: \(Int(response.main.tempMin - 273.15))°C"
-        self.sunrise = "Lever: \(NSDate(timeIntervalSince1970: TimeInterval(response.sys.sunrise)))"
-        self.sunset = "Coucher: \(response.sys.sunset)"
+        self.sunrise = "Lever: \(DateFormatter.hourMinutesFormat(date: TimeInterval(response.sys.sunrise)))"
+        self.sunset = "Coucher: \(DateFormatter.hourMinutesFormat(date: TimeInterval(response.sys.sunset)))"
         self.pressureText = "Pression: \(response.main.pressure / 1000) bar"
         self.humidityText = "Humidité: \(response.main.humidity)%"
     }

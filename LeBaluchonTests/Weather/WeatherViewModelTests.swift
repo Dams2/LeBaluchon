@@ -43,12 +43,11 @@ final class WeatherViewModelTests: XCTestCase {
         let expectation = self.expectation(description: "Repository text returned")
 
         let expectedResult: [WeatherViewModel.VisibleItem] = [WeatherViewModel.VisibleItem(city: "New York",
-                                                                                           icon: "03d",
-                                                                                           temperatureText: "-252°C",
+                                                                                           icon: "03d", temperatureText: "-252°C",
                                                                                            maxTemperatureText: "Température max: -248°C",
                                                                                            minTemperatureText: "Température min: -255°C",
-                                                                                           sunrise: "Lever: 2019-06-12 12:47:07 +0000",
-                                                                                           sunset: "Coucher: 1560396563",
+                                                                                           sunrise: "Lever: 02:47",
+                                                                                           sunset: "Coucher: 05:29",
                                                                                            pressureText: "Pression: 0 bar",
                                                                                            humidityText: "Humidité: 70%")]
 

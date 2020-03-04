@@ -10,13 +10,12 @@ import UIKit
 
 final class WeatherDataSources: NSObject, UITableViewDelegate, UITableViewDataSource {
     
-    typealias  Item = WeatherViewModel.VisibleItem
+    typealias Item = WeatherViewModel.VisibleItem
     
     private var items: [Item] = []
 
     func update(with items: [Item]) {
         self.items = items
-        print(items)
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

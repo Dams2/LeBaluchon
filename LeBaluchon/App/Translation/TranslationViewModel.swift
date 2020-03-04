@@ -48,7 +48,6 @@ final class TranslationViewModel {
             DispatchQueue.main.async {
                 self.destinationPlaceholderText?(result)
             }
-            print(result)
         }
     }
 }

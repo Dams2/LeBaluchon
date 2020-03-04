@@ -50,10 +50,10 @@ final class WeatherViewModel {
     // MARK: - Inputs
     
     func viewDidLoad() {
-        repository.getWeather(for: .newYork) { (response) in
-            self.weatherItems.append(.city(conditions: response))
-            self.repository.getWeather(for: .geneva) { (response) in
-                self.weatherItems.append(.city(conditions: response))
+        repository.getWeather(for: .newYork) { (responseA) in
+            self.repository.getWeather(for: .geneva) { (responseB) in
+                self.weatherItems.append(.city(conditions: responseA))
+                self.weatherItems.append(.city(conditions: responseB))
             }
         }
     }
