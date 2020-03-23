@@ -10,7 +10,11 @@ import Foundation
 
 final class Context {
 
+    // MARK: - Properties
+
     public let client: HTTPClient
+
+    // MARK: - Init
 
     init() {
         let engine = HTTPEngine(configuration: .default)

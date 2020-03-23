@@ -21,6 +21,4 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         coordinator.start()
         return true
     }
-    
-    
 }

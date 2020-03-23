@@ -35,10 +35,7 @@ final class ScreensTests: XCTestCase {
         XCTAssertNotNil(viewController)
     }
     
-    func testThatCreateMapViewControllerCorrectly() {
-        let viewController = screens.createMapViewController()
-        XCTAssertNotNil(viewController)
-    }
+
     
     func testThatCreateAlertCorrectly() {
         let alertConfiguration = AlertConfiguration(title: "", message: "", okMessage: "", cancelMessage: nil)

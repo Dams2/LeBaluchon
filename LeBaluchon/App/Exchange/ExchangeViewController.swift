@@ -38,11 +38,11 @@ final class ExchangeViewController: UIViewController {
     
     private func bind(to viewModel: ExchangeViewModel) {
         
-            viewModel.resultText = { [weak self] text in
-                DispatchQueue.main.async {
-                    self?.resultLabel.text = text
-                }
+        viewModel.resultText = { [weak self] text in
+            DispatchQueue.main.async {
+                self?.resultLabel.text = text
             }
+        }
         
 
         viewModel.amountText = { [weak self] placeholder in

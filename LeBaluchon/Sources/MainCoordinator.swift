@@ -12,7 +12,6 @@ enum ViewControllerItem: Int {
     case exchange = 0
     case translation = 1
     case weather = 2
-    case map = 3
 }
 
 protocol TabBarSourceType {
@@ -34,7 +33,6 @@ fileprivate class TabBarSource: TabBarSourceType {
     var items: [UINavigationController] = [
         UINavigationController(nibName: nil, bundle: nil),
         UINavigationController(nibName: nil, bundle: nil),
-        UINavigationController(nibName: nil, bundle: nil),
         UINavigationController(nibName: nil, bundle: nil)
     ]
 
@@ -42,7 +40,6 @@ fileprivate class TabBarSource: TabBarSourceType {
         self[.exchange].tabBarItem = UITabBarItem(title: "Change", image: UIImage(named: "dollardSign"), tag: 0)
         self[.translation].tabBarItem = UITabBarItem(title: "Traduction", image: UIImage(named: "text"), tag: 1)
         self[.weather].tabBarItem = UITabBarItem(title: "Météo", image: UIImage(named: "brightness"), tag: 2)
-        self[.map].tabBarItem = UITabBarItem(title: "Map", image: UIImage(named: "earth"), tag: 3)
     }
 }
 
@@ -59,10 +56,8 @@ final class MainCoordinator: NSObject {
     private var exchangeCoordinator: ExchangeCoordinator?
 
     private var translationCoordinator: TranslationCoordinator?
-    
+
     private var weatherCoordinator: WeatherCoordinator?
-    
-    private var mapCoordinator: MapCoordinator?
 
     private var tabBarSource = TabBarSource()
 
@@ -103,11 +98,6 @@ final class MainCoordinator: NSObject {
         weatherCoordinator = WeatherCoordinator(presenter: tabBarSource[.weather], screens: screens)
         weatherCoordinator?.start()
     }
-    
-    private func showMap() {
-        mapCoordinator = MapCoordinator(presenter: tabBarSource[.map], screens: screens)
-        mapCoordinator?.start()
-    }
 }
 
 extension MainCoordinator: UITabBarControllerDelegate {
@@ -124,8 +114,6 @@ extension MainCoordinator: UITabBarControllerDelegate {
             showTranslation()
         case .weather:
             showWeather()
-        case .map:
-            showMap()
         }
     }
 }

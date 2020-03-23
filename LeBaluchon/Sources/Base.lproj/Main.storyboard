@@ -293,35 +293,6 @@
             </objects>
             <point key="canvasLocation" x="433" y="-55"/>
         </scene>
-        <!--Map View Controller-->
-        <scene sceneID="gwm-vr-xSK">
-            <objects>
-                <viewController storyboardIdentifier="MapViewController" id="gpI-0W-wjC" customClass="MapViewController" customModule="LeBaluchon" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="5B6-M5-N7W">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="kWS-r9-MdW">
-                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
-                            </mapView>
-                        </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                        <constraints>
-                            <constraint firstItem="kWS-r9-MdW" firstAttribute="top" secondItem="gh9-Eu-HYX" secondAttribute="top" id="28d-2M-7tq"/>
-                            <constraint firstItem="kWS-r9-MdW" firstAttribute="trailing" secondItem="gh9-Eu-HYX" secondAttribute="trailing" id="JkW-yP-CZv"/>
-                            <constraint firstItem="kWS-r9-MdW" firstAttribute="leading" secondItem="gh9-Eu-HYX" secondAttribute="leading" id="VSr-zb-29O"/>
-                            <constraint firstItem="kWS-r9-MdW" firstAttribute="bottom" secondItem="gh9-Eu-HYX" secondAttribute="bottom" id="i78-rk-uE1"/>
-                        </constraints>
-                        <viewLayoutGuide key="safeArea" id="gh9-Eu-HYX"/>
-                    </view>
-                    <connections>
-                        <outlet property="mapView" destination="kWS-r9-MdW" id="Eq1-4a-ZiO"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="QVi-4s-bXG" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1239" y="-55"/>
-        </scene>
     </scenes>
     <resources>
         <image name="bubble.left.and.bubble.right.fill" catalog="system" width="64" height="48"/>

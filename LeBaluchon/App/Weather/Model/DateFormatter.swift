@@ -9,6 +9,7 @@
 import Foundation
 
 final class DateFormatter {
+    
     class func hourMinutesFormat(date: TimeInterval) -> String {
         let date = Date(timeIntervalSince1970: date)
         let formatter = Foundation.DateFormatter()

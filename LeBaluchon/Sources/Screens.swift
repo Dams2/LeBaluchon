@@ -54,13 +54,6 @@ extension Screens {
 }
 
 extension Screens {
-    func createMapViewController() -> UIViewController {
-        let viewController = storyboard.instantiateViewController(withIdentifier: "MapViewController") as! MapViewController
-        return viewController
-    }
-}
-
-extension Screens {
     func createAlert(with configuration: AlertConfiguration) -> UIAlertController {
         let alertController = UIAlertController()
         alertController.title = configuration.title

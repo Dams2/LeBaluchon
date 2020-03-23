@@ -8,6 +8,7 @@
 
 import Foundation
 
+/// Request with ID 
 enum City: String {
     case newYork = "5128581"
     case geneva = "6458783"

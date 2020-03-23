@@ -24,13 +24,4 @@ final class HelperTests: XCTestCase {
         
         XCTAssertNil(result)
     }
-    
-    func testGivenAHelper_WhenPresentAlert_ThenAlert_IsCorrectlyReturned() {
-//        let helper = Helper()
-//        let delegate: ExchangeViewControllerDelegate?
-//        
-//        let expectedResult = helper.presentAlert(title: "Attention", message: "Veuillez entrer une valeur", okMessage: "D'accord", cancelMessage: nil)
-//        
-//        XCTAssertNotNil(expectedResult)
-    }
 }
